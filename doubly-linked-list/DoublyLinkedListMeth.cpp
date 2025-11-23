@@ -123,6 +123,37 @@ void destroyList(List* L) {
   L->size = 0;
 }
 
+void displayList(const List& L) {
+	if (isEmpty(L)) {
+		cout << "List is empty\n";
+		return;
+	}
+	Node* current = L.head;
+	while (current) {
+		cout << current->data << " -> ";
+		current = current->next;
+	}
+	cout << "NULL\n";
+}
+
+int getElement(const List& L, int pos) {
+	if (isEmpty(L)) {
+		cerr << "\nList is empty\n";
+		return -1;
+	}
+
+	if (pos < 1 || pos > L.size) {
+		cerr << "\nInvalid position\n";
+		return -1;
+	}
+	Node* current = L.head;
+	for (int i = 1; i < pos; i++) {
+		current = current->next;
+	}
+
+	return current->data;
+}
+
 List CopyList(const List& L) {
   List newList = createList();
   Node* current = L.head;
